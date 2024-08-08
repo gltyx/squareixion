@@ -1,0 +1,817 @@
+@import "variables.css";
+
+.no-transition {
+    transition: none !important;
+}
+
+.realm {
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.frame {
+    width: 414px;
+    aspect-ratio: 1.42 / 1;
+    background-color: black;
+    border: 5px solid rgba(var(--frame-color));
+    box-shadow: inset 0 0 25px 0px rgba(var(--frame-color), .25), 0 0 25px rgba(var(--frame-color), .25);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.frame.basic-frame {
+    --frame-color: 255, 255, 255;
+}
+
+.frame.master-frame {
+    --frame-color: 255, 0, 0;
+}
+
+.frame.collapse-frame {
+    --frame-color: 0, 13, 189;
+}
+
+.frame.star-frame {
+    --frame-color: 255, 255, 0;
+}
+
+@keyframes collapse-milestones {
+    0%, 100% {
+        border: 5px solid rgb(0, 255, 255);
+        color: rgb(0, 255, 255);
+        box-shadow: inset 0 0 25px rgba(0, 255, 255, .25), 0 0 25px rgba(0, 255, 255, .25);
+    }
+    50% {
+        border: 5px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        box-shadow: inset 0 0 25px rgba(255, 255, 255, .25), 0 0 25px rgba(255, 255, 255, .25);
+    }
+}
+
+.frame.collapse-m-frame {
+    animation: 4s collapse-milestones infinite;
+}
+
+.frame.galaxy-frame {
+    --frame-color: 140, 0, 255;
+}
+
+@keyframes black-hole-frame {
+    0%, 100% {
+        border: 5px solid rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
+        box-shadow: inset 0 0 25px rgba(255, 187, 0, 0.25), 0 0 25px rgba(255, 187, 0, .25);
+    }
+    50% {
+        border: 5px solid rgb(255, 38, 0);
+        color: rgb(255, 38, 0);
+        box-shadow: inset 0 0 25px rgba(255, 38, 0, .25), 0 0 25px rgba(255, 38, 0, .25);
+    }
+}
+
+.frame.black-hole-frame {
+    animation: 8s black-hole-frame infinite;
+}
+
+.frame.rebuild-frame {
+    border: 5px solid transparent;
+    
+    background-image: 
+        linear-gradient(to right, rgb(17, 0, 39), rgb(0, 39, 21)), 
+        linear-gradient(to right, rgb(0, 255, 136), rgb(111, 0, 255)); 
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    box-shadow: 0 0 25px rgb(0, 0, 0) inset;
+    padding: 10px;
+    overflow: visible;
+}
+
+.frame.rebuild-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    transform: translate(0px, 0px);
+    z-index: -1;
+    background: linear-gradient(to right, rgba(0, 255, 136, .25), rgba(111, 0, 255, .25));
+    filter: blur(25px);
+    width: calc(100%);
+    height: calc(100%);
+}
+
+.frame.rebuild-m-frame {
+    --frame-color: 0, 140, 255;
+}
+
+.frame-noglow {
+    --frame-noglow-color: 255, 255, 255;
+    background-color: black;
+    border: 3px solid rgba(var(--frame-noglow-color));
+    overflow: hidden;
+}
+
+.frame-noglow.basic-frame {
+    --frame-noglow-color: 255, 255, 255;
+}
+
+.frame-noglow.master-frame {
+    --frame-noglow-color: 255, 0, 0;
+}
+
+.frame-noglow.collapse-frame {
+    --frame-noglow-color: 0, 13, 189;
+}
+
+.frame-noglow.star-frame {
+    --frame-noglow-color: 255, 255, 0;
+}
+
+@keyframes collapse-milestones-n {
+    0%, 100% {
+        border: 3px solid rgb(0, 255, 255);
+    }
+    50% {
+        border: 3px solid rgb(255, 255, 255);
+    }
+}
+
+.frame-noglow.collapse-m-frame {
+    animation: 4s collapse-milestones-n infinite;
+}
+
+@keyframes black-hole-frame-ng {
+    0%, 100% {
+        border-color: rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
+    }
+    50% {
+        border-color: rgb(255, 38, 0);
+        color: rgb(255, 38, 0);
+    }
+}
+
+.frame-noglow.black-hole-frame {
+    animation: 8s black-hole-frame-ng infinite;
+}
+
+.frame-noglow.rebuild-m-frame {
+    --frame-noglow-color: 0, 140, 255;
+}
+
+.icon {
+    aspect-ratio: 1 / 1;
+}
+
+.block {
+    display: block;
+}
+
+.column {
+    flex-direction: column;
+    gap: 100px;
+}
+
+.column-flex {
+    flex-direction: column;
+}
+
+.button-cannot {
+    cursor: auto !important;
+}
+
+.lock-frame, .unlock-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.unlock-frame {
+    display: none;
+}
+
+.lock-info {
+    font-size: 22px;
+    text-wrap: wrap;
+}
+
+.button {
+    display: flex;
+    overflow: hidden;
+    border: 2px solid white;
+    background-color: black;
+    transition: 100ms;
+    transition-property: background-color;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--darkerer-color);
+}
+
+.absolute,
+.layer-info,
+.layer-button,
+.upgrades-container,
+.upgrade-name,
+.upgrade-info,
+.upgrade-cost {
+    position: absolute;
+}
+
+.white-text {
+    color: var(--white-color);
+}
+.white-text-important {
+    color: var(--white-color) !important;
+}
+.dark-text {
+    color: var(--dark-color);
+}
+.darker-text {
+    color: var(--darker-color);
+}
+.darkerer-text {
+    color: var(--darkerer-color);
+}
+.darker-2-text {
+    color: var(--darker-color-2);
+}
+
+.size-175 {
+    font-size: 175%;
+}
+.size-150 {
+    font-size: 150%;
+}
+.size-125 {
+    font-size: 125%;
+}
+.size-75 {
+    font-size: 75%;
+}
+.size-50 {
+    font-size: 50%;
+}
+.bold {
+    font-weight: bold;
+}
+
+.positive {
+    color: rgb(0, 255, 0);
+}
+
+.pow {
+    color: rgb(0, 119, 255);
+    background: linear-gradient(to right, rgb(0, 119, 255), rgb(4, 0, 255), rgb(0, 119, 255));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.negative {
+    color: rgb(255, 0, 0);
+}
+
+.star {
+    width: 1px;
+    aspect-ratio: 1 / 1;
+    position: fixed;
+    border-radius: 100%;
+}
+
+.damage {
+    color: red;
+}
+
+.prestige {
+    color: rgb(0, 255, 255);
+}
+
+.light {
+    color: rgb(255, 255, 0);
+}
+
+.master {
+    color: red;
+}
+.master-dark {
+    color: rgb(175, 0, 0);
+}
+.master-dark-2 {
+    color: rgb(125, 0, 0);
+}
+
+.gcs {
+    color: rgb(185, 123, 255);
+}
+
+.gcd {
+    color: red;
+}
+
+.ruby {
+    color: red;
+}
+
+.giga {
+    color: rgb(0, 255, 0);
+}
+
+.neon-luck {
+    color: rgb(255, 146, 73);
+}
+
+.collapse {
+    color: rgb(0, 13, 189);
+}
+.collapse-dark {
+    color: rgb(0, 9, 138);
+}
+.collapse-dark-2 {
+    color: rgb(0, 7, 107);
+}
+
+.stars {
+    color: rgb(255, 255, 0);
+}
+
+.galaxy {
+    color: rgb(140, 0, 255);
+}
+
+.galaxy-dark {
+    color: rgb(74, 0, 134);
+}
+
+@keyframes black-holes-stroke {
+    0%, 100% {
+        -webkit-text-stroke: 1px rgb(255, 187, 0);
+    }
+    50% {
+        -webkit-text-stroke: 1px rgb(255, 38, 0);
+    }
+}
+
+.black-holes-stroke {
+    animation: 8s black-holes-stroke infinite;
+    color: transparent;
+}
+
+@keyframes black-holes {
+    0%, 100% {
+        color: rgb(255, 187, 0);
+    }
+    50% {
+        color: rgb(255, 38, 0);
+    }
+}
+
+.black-holes {
+    animation: 8s black-holes infinite;
+}
+
+@keyframes black-holes-dark {
+    0%, 100% {
+        color: rgb(165, 121, 0);
+    }
+    50% {
+        color: rgb(165, 25, 0);
+    }
+}
+
+.black-holes-dark {
+    animation: 8s black-holes-dark infinite;
+    color: transparent;
+}
+
+@keyframes collapse-milestones-t {
+    0%, 100% {
+        color: rgb(0, 255, 255);
+    }
+    50% {
+        color: rgb(255, 255, 255);
+    }
+}
+
+.collapse-text {
+    animation: 4s collapse-milestones-t infinite;
+}
+
+.rebuild {
+    background: linear-gradient(to right,rgb(0, 255, 136), rgb(111, 0, 255));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.rebuild-stroke {
+    -webkit-text-stroke: 1px transparent;
+    background: linear-gradient(to right,rgb(0, 255, 136), rgb(111, 0, 255));
+    background-clip: text;
+    text-transform: capitalize;
+    -webkit-text-fill-color: transparent;
+}
+.rebuild-dark {
+    background: linear-gradient(to right,rgb(0, 165, 88), rgb(71, 0, 165));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rebuild-m-dark {
+    color: rgb(0, 63, 134);
+}
+
+.cap {
+    background: linear-gradient(45deg,#ff8400, #ffc800, #ff8400);
+    font-style: italic;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cap-2 {
+    background: linear-gradient(45deg,#af0000, #da4040, #af0000);
+    font-style: italic;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cap-3 {
+    background: linear-gradient(45deg,#3800a0, #8142f5, #3800a0);
+    font-style: italic;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cap-4 {
+    background: linear-gradient(45deg,#f700ff, #8142f5, #00ffdd);
+    font-style: italic;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.area {
+    position: absolute;
+    width: 500px;
+    height: 900px;
+    gap: 50px;
+    pointer-events: none;
+}
+
+.area * {
+    pointer-events: auto;
+}
+
+.layer-div {
+    position: relative;
+}
+
+.layer-info {
+    flex-shrink: 0;
+    font-size: 22px;
+    top: 6%;
+    width: 95%;
+}
+
+.layer-button {
+    flex-shrink: 0;
+    top: 74%;
+    width: 85%;
+    aspect-ratio: 1 / calc(1 / 6.072);
+}
+
+.layer-button-text {
+    font-size: 19px;
+    color: var(--darker-color);
+}
+
+.layer-button:active > .layer-button-text:not(.layer-button-text-cannot) {
+    color: rgb(255, 255, 255);
+}
+
+.layer-button:active > .layer-button-text-cannot {
+    color: rgb(255, 0, 0) !important;
+}
+
+.layer-upgrades-div {
+    position: relative;
+}
+
+.layer-upgrades-info {
+    flex-shrink: 0;
+    font-size: 22px;
+    top: 0%;
+    line-height: 35px;
+}
+
+.layer-upgrades-name {
+    flex-shrink: 0;
+    font-size: 30px;
+    top: 50%;
+}
+
+.upgrades-container {
+    width: 100%;
+    height: 35%;
+    bottom: 0;
+    justify-content: start;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    background-color: black;
+    gap: 10px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.upgrades-container * {
+    overflow-x: hidden;
+}
+
+.upgrades-container::-webkit-scrollbar {
+    height: 5px;
+    border-width: 4px;
+}
+
+.upgrades-container::before,
+.upgrades-container::after {
+    content: "";
+}
+
+.upgrade {
+    width: 85px;
+    aspect-ratio: 1 / 1;
+    transition: 50ms linear;
+    transition-property: background-color;
+    flex-shrink: 0;
+    flex-direction: column;
+    position: relative;
+    background-color: black;
+}
+.upgrade * {
+    pointer-events: none;
+}
+
+.upgrade:active {
+    background-color: var(--darker-color-2);
+}
+
+.upgrade-name {
+    font-size: .75em;
+    top: -5%;
+}
+
+.upgrade-info {
+    font-size: .75em;
+    top: 20%;
+    text-wrap: wrap;
+}
+
+.upgrade-cost {
+    font-size: .75em;
+    top: 72.5%;
+    text-wrap: nowrap;
+    text-align: center;
+}
+
+.milestone-container {
+    width: 80%;
+    height: 65%;
+    top: calc(100% - 70% - 3px);
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.milestone-container::-webkit-scrollbar {
+    width: 5px;
+    background-clip: border-box;
+    border-left: 2px solid red;
+}
+
+.milestone-container::-webkit-scrollbar-thumb {
+    background-color: red;
+    border: none;
+}
+
+.milestone {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border-width: 2px;
+    border-left: none;
+    border-right: none;
+    overflow-y: auto;
+    transition: background-color 100ms linear;
+}
+
+.collapse-milestone {
+    height: 125px;
+}
+
+.milestone::-webkit-scrollbar {
+    width: 5px;
+    border: none;
+    position: absolute;
+    background-color: transparent;
+}
+
+.milestone::-webkit-scrollbar-thumb {
+    background-color: red;
+}
+
+.milestone > * {
+    position: absolute;
+}
+
+.milestone:hover {
+    background-color: rgb(35, 0, 0);
+}
+
+.milestone:first-child {
+    border-top-width: 0px;
+}
+
+.milestone-requirement {
+    top: 0%;
+    font-size: 125%;
+    color: rgb(255, 0, 0);
+}
+
+.milestone-info {
+    color: rgb(125, 0, 0);
+    top: 55%;
+    transform: translateY(-50%);
+    word-wrap: break-word;
+    width: 95%;
+}
+
+.milestone-info span.size-75  {
+    line-height: 0px;
+}
+
+.s-button {
+    width: 12.5vh;
+    height: 4.166vh;
+    background-color: black;
+    border: .25vh solid white;
+    transition: background-color 100ms;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.s-button:hover {
+    background-color: var(--darker-color-2);
+}
+
+.s-button:active {
+    background-color: var(--darker-color);
+}
+
+.s-button > * { 
+    color: white; 
+    margin: 0px;
+    font-size: 1.5vh;
+    flex-shrink: 0;
+}
+
+.settings-column {
+    gap: .5vh;
+    flex-direction: column;
+}
+
+.settings-row {
+    gap: .5vh;
+}
+
+.g-cube {
+    border: none;
+    background-color: rgb(200, 200, 200);
+    
+    width: 250px;
+    aspect-ratio: 1 / 1;
+    transition: linear 100ms;
+    transition-property: background-color;
+    cursor: url('../images/sword.png'), auto;
+}
+
+.g-cube:active {
+    transition: none;
+    background-color: rgb(255, 100, 100) !important;
+}
+
+.s-button-fit {
+    width: fit-content;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    max-width: 95%;
+}
+
+.neon-square {
+    --color: 255, 255, 255;
+    position: absolute;
+    top: 10%;
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    background-color: rgb(var(--color));
+    box-shadow: 0 0 15px 5px rgba(var(--color), .5);
+    transition: 100ms linear;
+    transition-property: background-color, box-shadow;
+}
+
+.collapse-frame-text {
+    background: linear-gradient(to bottom, rgb(170, 170, 170), rgb(255, 255, 255), rgb(0, 2, 255));
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10vh #000000;
+    font-weight: bold;
+}
+/* taken and edited from: https://stackoverflow.com/questions/7525977/how-to-write-fraction-value-using-html
+{*/
+.frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 8px;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.bottom-m {
+    border-top: 1px solid rgb(125, 0, 0);
+}
+.frac span.symbol {
+    display: none;
+}
+/*}*/
+
+.galaxy-line {
+    display: inline-flex;
+    width: 100px;
+    height: 1px;
+    transform: translateY(-2px);
+    background: linear-gradient(to right, rgb(0,0,0,0), rgb(74, 0, 139) 25% 75%, rgb(0,0,0,0));
+    vertical-align: middle;
+}
+
+.line {
+    display: inline-flex;
+    width: 100px;
+    height: 1px;
+    transform: translateY(-2px);
+    background: linear-gradient(to right, rgb(0,0,0,0), rgb(255, 255, 255) 25% 75%, rgb(0,0,0,0));
+    vertical-align: middle;
+}
+
+.rebuild-frame-text {
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+}
+
+.rebuild-milestone {
+    border-color: rgb(0, 140, 255);
+}
+
+.rebuild-milestone:hover {
+    background-color: rgb(0, 20, 35);
+}
+
+.rebuild-milestone > .milestone-requirement {
+    color: rgb(0, 140, 255);
+}
+
+.rebuild-milestone > .milestone-info {
+    color: rgb(0, 69, 125);
+}
+
+.spoiler {
+    pointer-events: auto !important;
+    position: relative;
+    display: inline-flex;
+}
+
+.spoiler::after {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: rgb(20, 20, 20);
+    transition: opacity 250ms;
+    flex-wrap: wrap;
+}
+
+.spoiler:hover::after {
+    opacity: 0.25;
+}
